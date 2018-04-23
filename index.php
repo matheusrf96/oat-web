@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -20,13 +22,8 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Site de exemplo</title>
-
-    <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
     <link href="css/estilo.css" rel="stylesheet">
   </head>
 
@@ -52,6 +49,17 @@ else{
           </li>
           <li class="nav-item 
           <?php 
+          
+            if($pg == 'sobre'){
+              echo 'active';
+            }
+          
+          ?>
+          ">
+            <a class="nav-link" href="?pg=sobre">Sobre</a>
+          </li>
+          <li class="nav-item 
+          <?php 
 
             if($pg == 'formulario'){
               echo 'active';
@@ -59,18 +67,7 @@ else{
 
           ?>
           ">
-            <a class="nav-link" href="?pg=formulario">Contato</a>
-          </li>
-          <li class="nav-item 
-          <?php 
-
-            if($pg == 'sobre'){
-              echo 'active';
-            }
-
-          ?>
-          ">
-            <a class="nav-link" href="?pg=sobre">Sobre</a>
+            <a class="nav-link" href="?pg=formulario">Login</a>
           </li>
         </ul>
       </div>
@@ -81,6 +78,12 @@ else{
         <div class="container">
           <h1 class="display-3">Meu site!</h1>
           <p>Este é um site de exemplo.</p>
+          <?php
+            if(isset($_SESSION['usuario'])){
+              echo "<p>Olá, ".$_SESSION['usuario']['nome']."</p>";
+              echo "<a href='?pg=logout'>Sair</a>";
+            }
+          ?>
         </div>
       </div>
 
@@ -89,7 +92,7 @@ else{
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <?php
             if($pg=='formulario'){
-              echo '<li class="breadcrumb-item"><a href="#">Formulário</a></li>';
+              echo '<li class="breadcrumb-item"><a href="#">Login</a></li>';
             }
             else if($pg == 'sobre'){
               echo '<li class="breadcrumb-item"><a href="#">Sobre</a></li>';

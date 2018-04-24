@@ -32,7 +32,7 @@ else{
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto menu-principal">
           <li class="nav-item <?= ($pg == 'inicio')?'active':'' ?>">
             <a class="nav-link" href="./">Home</a>
           </li>
@@ -69,7 +69,25 @@ else{
           ">
             <a class="nav-link" href="?pg=formulario">Login</a>
           </li>
+          <li class="nav-item 
+          <?php 
+
+            if($pg == 'area-restrita'){
+              echo 'active';
+            }
+
+          ?>
+          ">
+            <a class="nav-link" href="?pg=formulario">Área Restrita</a>
+          </li>
         </ul>
+        <div class="text-right bem-vindo">
+          <?php
+            if(isset($_SESSION['usuario'])){
+              echo "<p>Olá, ".$_SESSION['usuario']['nome']."! <a href='?pg=logout'>Sair</a></p>";
+            }
+          ?>
+        </div>
       </div>
     </nav>
 
@@ -78,12 +96,12 @@ else{
         <div class="container">
           <h1 class="display-3">Meu site!</h1>
           <p>Este é um site de exemplo.</p>
-          <?php
+          <!-- <?php
             if(isset($_SESSION['usuario'])){
               echo "<p>Olá, ".$_SESSION['usuario']['nome']."</p>";
               echo "<a href='?pg=logout'>Sair</a>";
             }
-          ?>
+          ?> -->
         </div>
       </div>
 
@@ -99,6 +117,9 @@ else{
             }
             else if($pg == 'listagem'){
               echo '<li class="breadcrumb-item"><a href="#">Listagem de Itens</a></li>';
+            }
+            else if($pg == 'area-restrita'){
+              echo '<li class="breadcrumb-item"><a href="#">Área Restrita</a></li>';
             }
           ?>
         </ol>

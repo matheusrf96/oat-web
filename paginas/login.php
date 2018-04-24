@@ -8,7 +8,7 @@ if($usuario == 'teste' && $senha == '123'){
     $_SESSION['usuario']['id'] = 1;
     $_SESSION['usuario']['nome'] = 'Teste';
     
-    #header("Location: index.php");
+    header("Location: ?pg=area-restrita");
 }else{
     echo "Erro na autenticação :(";
 }

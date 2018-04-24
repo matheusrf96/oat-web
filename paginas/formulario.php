@@ -1,3 +1,11 @@
+<?php
+
+if(isset($_SESSION['usuario'])){
+  header('Location: ?pg=area-restrita');
+}
+
+?>
+
 <h2>Login</h2>
 <form action="?pg=login" method="POST">
   <label for="usuario">Usuário: </label>

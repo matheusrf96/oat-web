@@ -13,6 +13,17 @@ else{
   $pg = "inicio";
 }
 
+$corTexto = "#ff0000";
+
+if (isset($_COOKIE['corTexto'])) {
+	$corTexto = $_COOKIE['corTexto'];
+}
+
+if (isset($_POST['alterarCor'])) {
+	$corTexto = $_POST['corTexto'];
+	setcookie("corTexto",$corTexto, (time()+3600));
+}
+
 ?>
 
 <!doctype html>
@@ -25,9 +36,10 @@ else{
     <title>Site de exemplo</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/estilo.css" rel="stylesheet">
+    <script type="text/javascript" src="js/funcoes.js"></script>
   </head>
 
-  <body>
+  <body id="corpo">
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 
@@ -93,7 +105,7 @@ else{
 
     <main role="main">
       <div class="jumbotron">
-        <div class="container">
+        <div class="container" >
           <h1 class="display-3">Meu site!</h1>
           <p>Este é um site de exemplo.</p>
           <!-- <?php
@@ -125,7 +137,7 @@ else{
         </ol>
       </nav>
 
-      <div class="container">
+      <div class="container" style="color: <?= $corTexto ?>;">
         <!-- Example row of columns -->
         <div class="row">
           <div class="col">
